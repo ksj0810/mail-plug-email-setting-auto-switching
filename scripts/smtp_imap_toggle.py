@@ -1,5 +1,6 @@
 import os
 import time
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -11,6 +12,8 @@ options = webdriver.ChromeOptions()
 # options.add_argument("--headless")  # GUI 없이 실행
 
 driver = webdriver.Chrome(options=options)
+
+load_dotenv()
 
 EMAIL = os.environ.get('EMAIL')
 ID = os.environ.get('ID')
@@ -125,9 +128,7 @@ try:
     time.sleep(1)
     toggle_checkbox("use_imap", enable=True)
 
-    print("자동화 완료. 창을 닫으려면 Ctrl+C를 누르세요.")
-    while True:
-        time.sleep(1)
+    print("메일 셋팅 완료.")
 
 finally:
     driver.quit()
